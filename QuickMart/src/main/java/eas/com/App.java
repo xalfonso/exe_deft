@@ -35,8 +35,8 @@ public class App {
 
 
         System.out.println(line.trim());
-       // float value = Float.valueOf(line);
-        //System.out.println(value);
+        float value = Float.valueOf(line.trim().replace("$",""));
+        System.out.println(value);
 
     }
 }

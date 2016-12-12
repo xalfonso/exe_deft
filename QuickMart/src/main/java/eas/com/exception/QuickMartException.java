@@ -6,6 +6,6 @@ package eas.com.exception;
 public class QuickMartException extends Exception {
 
     public QuickMartException(String message) {
-        super(message);
+        super("[Error Detected] "+ message);
     }
 }
