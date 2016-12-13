@@ -27,31 +27,34 @@ public class Item implements Cloneable {
         return this;
     }
 
-    public float getUnitRegularPrice() {
-        return unitRegularPrice;
-    }
-
-    public Item setUnitRegularPrice(float unitRegularPrice) {
-        this.unitRegularPrice = unitRegularPrice;
-        return this;
-    }
-
-    public float getUnitMemberPrice() {
-        return unitMemberPrice;
-    }
-
-    public Item setUnitMemberPrice(float unitMemberPrice) {
-        this.unitMemberPrice = unitMemberPrice;
-        return this;
-    }
-
     public boolean isTaxable() {
         return taxable;
     }
 
+    public float diferenceMemberRegularPrice(){
+        return this.unitRegularPrice - this.unitMemberPrice;
+    }
+
+
     public Item setTaxable(boolean taxable) {
         this.taxable = taxable;
         return this;
+    }
+
+    /**
+     * @param isMemberCustomer if the customer is member customer
+     * @return unit price depending on type of customer
+     */
+    public float getUnitPrice(boolean isMemberCustomer){
+        return isMemberCustomer ? this.unitMemberPrice : unitRegularPrice;
+    }
+
+    public float getUnitRegularPrice() {
+        return unitRegularPrice;
+    }
+
+    public float getUnitMemberPrice() {
+        return unitMemberPrice;
     }
 
     public String getTaxableString(){

@@ -1,5 +1,6 @@
 package eas.com.model;
 
+
 import eas.com.exception.QuickMartException;
 
 /**
@@ -16,14 +17,13 @@ public class BoughtItem {
     }
 
 
-
     /**
-     *
      * @return true if the item is out, false otherwise
      */
-    public boolean isItemOut(){
+    public boolean isItemOut() {
         return this.quantity == 0;
     }
+
     /**
      * @param demand for comparing if exist enough items
      * @return true is exist enough items, false otherwise
@@ -44,6 +44,7 @@ public class BoughtItem {
 
     /**
      * Decrease the number of items
+     *
      * @param value number of items for removing
      * @return item
      * @throws QuickMartException if no exist enough item
@@ -59,16 +60,46 @@ public class BoughtItem {
 
 
     /**
-     * @return total price for regular customer
+     * @return total price depending on type of customer
      */
-    public float getTotalMemberPrice() {
-        return this.quantity * this.item.getUnitMemberPrice();
+    public float getTotalPrice(boolean isMemberCustomer) {
+        return this.quantity * this.getItem().getUnitPrice(isMemberCustomer);
     }
 
     /**
-     * @return total price for member customer
+     *
+     * @return total tax depending on type of customer
      */
-    public float getTotalRegularPrice() {
-        return this.quantity * this.item.getUnitRegularPrice();
+    public float getTotalTax(boolean isMemberCustomer){
+        return this.getItem().isTaxable() ? this.getTotalPrice(isMemberCustomer) * 0.065f : 0;
+    }
+
+    public float getSavedMoney(boolean isMemberCustomer){
+        return isMemberCustomer ? this.getItem().diferenceMemberRegularPrice() * this.quantity : 0;
+    }
+
+
+
+    public Item getItem() {
+        return item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+
+    public String toStringFormat(boolean isMemeberCustomer) {
+        String quantityString = String.valueOf(this.quantity);
+        String unitPriceString = String.valueOf(this.getItem().getUnitPrice(isMemeberCustomer));
+        String totalPriceString = String.valueOf(this.getTotalPrice(isMemeberCustomer));
+
+        return this.getItem().getName()
+                + String.format("%" + (24 - this.getItem().getName().length()) + "s", "")
+                + quantityString
+                + String.format("%" + (28 - quantityString.length()) + "s", "")
+                + unitPriceString
+                + String.format("%" + (30 - unitPriceString.length()) + "s", "")
+                + totalPriceString;
     }
 }

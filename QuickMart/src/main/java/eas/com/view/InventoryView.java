@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * View for the Inventory
- *
+ * <p>
  * Created by eduardo on 12/12/2016.
  */
 public class InventoryView {
@@ -38,11 +38,13 @@ public class InventoryView {
                         -> System.out.println(k + ": " + v.getQuantity() + ", $" + v.getItem().getUnitRegularPrice() + ", $" + v.getItem().getUnitMemberPrice() + ", " + v.getItem().getTaxableString()));
     }
 
+
     /**
      * Show the temporal data of the inventory
-     * @param inventoryItems to show
+     *
+     * @param inventoryItems to updateView
      */
-    public void showTemporalData(List<InventoryItem> inventoryItems){
+    public void showTemporalData(List<InventoryItem> inventoryItems) {
         System.out.println("<item>: <quantity>, <regular price>, <member price>, <tax status>");
         inventoryItems
                 .forEach(v -> System.out.println(v.getItem().getName() + ": " + v.getQuantity() + ", $" + v.getItem().getUnitRegularPrice() + ", $" + v.getItem().getUnitMemberPrice() + ", " + v.getItem().getTaxableString()));
@@ -50,12 +52,13 @@ public class InventoryView {
 
     /**
      * Load the file inventory
+     *
      * @param fileInventory to read
      * @return List<InventoryItem>
-     * @throws IOException is happens any error in read line from the file
+     * @throws IOException        is happens any error in read line from the file
      * @throws QuickMartException different errors found
      */
-    public List<InventoryItem> loadDataFromFile(String fileInventory) throws IOException, QuickMartException {
+    public List<InventoryItem> readDataFromFile(String fileInventory) throws IOException, QuickMartException {
         List<InventoryItem> items = new ArrayList<>();
 
         try (BufferedReader fileReaderInventory = new BufferedReader(new FileReader(fileInventory))) {
@@ -63,7 +66,7 @@ public class InventoryView {
             String line;
             int linePos = 1;
             while ((line = fileReaderInventory.readLine()) != null) {
-                InventoryItem inventoryItem = this.parseDataFile(line, linePos);
+                InventoryItem inventoryItem = this.parseDataLine(line, linePos);
                 items.add(inventoryItem);
                 linePos++;
             }
@@ -83,7 +86,7 @@ public class InventoryView {
      * @return InventoryItem
      * @throws QuickMartException different errors found in the line parsing
      */
-    private InventoryItem parseDataFile(String line, int linePos) throws QuickMartException {
+    private InventoryItem parseDataLine(String line, int linePos) throws QuickMartException {
         String[] nameAndDetail = line.split(":");
         if (nameAndDetail.length == 1)
             throw new QuickMartException("In the line: " + linePos + " is not defined correctly the item, missing the symbol (:) {Data Line: " + line + "}");

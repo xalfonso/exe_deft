@@ -90,4 +90,8 @@ public class ShoppingCart {
     public LocalDate getLocalDate() {
         return localDate;
     }
+
+    public Map<String, BoughtItem> getBoughtItemMap() {
+        return boughtItemMap;
+    }
 }

@@ -15,8 +15,6 @@ import java.io.InputStreamReader;
 public class App {
 
     static private BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in));
-    static private InventoryController inventoryController = new InventoryController();
-
 
     public static void main(String[] args) throws IOException {
         String option = "";
@@ -41,7 +39,7 @@ public class App {
                     saleRegularMember();
                     break;
                 case "4":
-                    System.out.println("Option Selected: 4");
+                    addItemShoppingCart();
                     break;
                 case "5":
                     System.out.println("Option Selected: 5");
@@ -88,18 +86,18 @@ public class App {
         String fileName = consoleIn.readLine();
 
         try {
-            inventoryController.loadDataFromFile(fileName);
-            System.out.println("The operation was made correctly. The data loaded was: ");
+            InventoryController.getCurrentInventoryController().loadDataFromFile(fileName);
+            System.out.println("The data of the file is this: ");
 
-            inventoryController.showTempDataFromFile();
+            InventoryController.getCurrentInventoryController().showTempDataFromFile();
 
-            System.out.print("Are you sure that you want to load this data into the inventory? (s) for confirm, other letter otherwise ");
+            System.out.print("Are you sure that you want to load this data into the inventory? (s) for confirm, other letter otherwise: ");
             String sureLoad = consoleIn.readLine();
             if (sureLoad.equalsIgnoreCase("s")) {
-                inventoryController.fillInventory();
+                InventoryController.getCurrentInventoryController().fillInventory();
                 System.out.println("The inventory was filled");
             } else {
-                inventoryController.discardTempDataFromInventory();
+                InventoryController.getCurrentInventoryController().discardTempDataFromInventory();
                 System.out.println("The data was discard");
             }
 
@@ -114,20 +112,18 @@ public class App {
     private static void viewInventoryOption() {
         System.out.println("--------- Option Selected: 1. Inventory. View --------------");
         System.out.println();
-        inventoryController.show();
+        InventoryController.getCurrentInventoryController().updateView();
         System.out.println();
     }
 
     private static void saleRewardsMember() {
         System.out.println("--------- Option Selected: 2. Sale. Rewards Member --------");
 
-        if (ShoppingController.getCurrentShoppingController() == null) {
+        try {
             ShoppingController.createNewShoppingControllerMemberCustomer();
-
             System.out.println("The operation was made correctly. New Customer/Shopping cart was created: ");
-            ShoppingController.getCurrentShoppingController().showBasicData();
-
-        } else {
+            ShoppingController.getCurrentShoppingController().updateViewBasicData();
+        } catch (QuickMartException e) {
             System.out.println("In this moment you are taking care of the transaction:  " + ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction() + ". Please, finish it for create a new");
         }
     }
@@ -135,15 +131,42 @@ public class App {
     private static void saleRegularMember() {
         System.out.println("--------- Option Selected: 3. Sale. Regular Member --------");
 
-        if (ShoppingController.getCurrentShoppingController() == null) {
+        try {
             ShoppingController.createNewShoppingControllerRegularCustomer();
-
             System.out.println("The operation was made correctly. New Customer/Shopping cart was created: ");
-            ShoppingController.getCurrentShoppingController().showBasicData();
-
-        } else {
-            System.out.println("In this moment you are taking care of the transaction:  " + ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction() + ". Please, finish it for create a new");
+            ShoppingController.getCurrentShoppingController().updateViewBasicData();
+        } catch (QuickMartException e) {
+            System.out.println("The operation is not valid. In this moment you are taking care of the transaction:  " + ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction() + ". Please, finish it for create a new");
         }
+
+    }
+
+    private static void addItemShoppingCart() throws IOException {
+        System.out.println("--------- Option Selected: 4. Shopping Cart. Add Item -----");
+
+        if (InventoryController.getCurrentInventoryController().isInventoryEmpty()) {
+            System.out.println("The operation is not valid. The inventory is empty. Please, fill the inventory");
+            return;
+        }
+
+        if (ShoppingController.getCurrentShoppingController() == null) {
+            System.out.println("The operation is not valid. There is no a shopping cart created. Please, create member or regular customer");
+            return;
+        }
+
+        InventoryController.getCurrentInventoryController().updateView();
+        System.out.print("Please, select one item and its quantity from inventory. (For example: Milk,3) :");
+        try {
+            ShoppingController.getCurrentShoppingController().addItem(consoleIn.readLine());
+            ShoppingController.getCurrentShoppingController().updateView();
+        } catch (QuickMartException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    private static void showShoppingCart(){
+
     }
 
 }

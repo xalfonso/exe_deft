@@ -50,6 +50,14 @@ public class Inventory {
         this.inventoryItemMap.put(inventoryItem.getItem().getName(), inventoryItem);
     }
 
+    /**
+     *
+     * @return true is the inventory is empty, false otherwise
+     */
+    public boolean isEmpty(){
+        return this.inventoryItemMap.isEmpty();
+    }
+
 
     public Map<String, InventoryItem> getInventoryItemMap() {
         return inventoryItemMap;

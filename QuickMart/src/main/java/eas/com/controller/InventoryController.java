@@ -3,6 +3,7 @@ package eas.com.controller;
 import eas.com.exception.QuickMartException;
 import eas.com.model.Inventory;
 import eas.com.model.InventoryItem;
+import eas.com.model.Item;
 import eas.com.view.InventoryView;
 
 import java.io.IOException;
@@ -15,6 +16,13 @@ import java.util.List;
  * Created by eduardo on 12/12/2016.
  */
 public class InventoryController {
+
+
+    /**
+     * Represent the unique Inventory controller of the system
+     */
+    private static InventoryController currentInventoryController;
+
 
     /**
      * Represent the Model
@@ -33,18 +41,27 @@ public class InventoryController {
     private List<InventoryItem> inventoryItemsTemp;
 
 
-    public InventoryController() {
+    private InventoryController() {
         this.inventory = new Inventory();
         this.inventoryView = new InventoryView(this.inventory);
     }
 
-    public void show() {
+    /**
+     *
+     * @return true if the inventory is empty, false otherwise
+     */
+    public boolean isInventoryEmpty(){
+        return this.inventory.isEmpty();
+    }
+
+
+    public void updateView() {
         this.inventoryView.show();
     }
 
 
     public void loadDataFromFile(String file) throws IOException, QuickMartException {
-        this.inventoryItemsTemp = this.inventoryView.loadDataFromFile(file);
+        this.inventoryItemsTemp = this.inventoryView.readDataFromFile(file);
     }
 
     public void showTempDataFromFile() throws QuickMartException {
@@ -68,4 +85,18 @@ public class InventoryController {
     }
 
 
+    public Item removeFromInventory(String nameItem, int quantity) throws QuickMartException {
+        return this.inventory.removeItemQuantity(nameItem, quantity);
+    }
+
+    /**
+     * Singleton instance of the inventory controller
+     * @return current inventory controller
+     */
+    public static InventoryController getCurrentInventoryController() {
+        if(currentInventoryController == null){
+            currentInventoryController = new InventoryController();
+        }
+        return currentInventoryController;
+    }
 }
