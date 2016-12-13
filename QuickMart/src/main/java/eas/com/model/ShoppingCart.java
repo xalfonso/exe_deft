@@ -2,6 +2,7 @@ package eas.com.model;
 
 import eas.com.exception.QuickMartException;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,9 +14,28 @@ public class ShoppingCart {
 
     private Map<String, BoughtItem> boughtItemMap;
 
+    /**
+     * False: Regular Customer
+     * True: Member Customer
+     */
+    private boolean memberCustomer;
 
-    public ShoppingCart() {
+
+    /**
+     * The id transaction of the shopping cart
+     */
+    private String transaction;
+
+    /**
+     * The date that is created the Shopping Cart
+     */
+    private LocalDate localDate;
+
+    public ShoppingCart(boolean memberCustomer, String transaction) {
         this.boughtItemMap = new HashMap<String, BoughtItem>();
+        this.memberCustomer = memberCustomer;
+        this.transaction = transaction;
+        this.localDate = LocalDate.now();
     }
 
     /**
@@ -53,5 +73,21 @@ public class ShoppingCart {
         } else {
             this.boughtItemMap.get(item.getName()).increaseQualityBy(quantity);
         }
+    }
+
+    public boolean isMemberCustomer() {
+        return memberCustomer;
+    }
+
+    public String getTypeCustomer(){
+        return this.memberCustomer ? "Rewards Member" : "Regular customer";
+    }
+
+    public String getTransaction() {
+        return transaction;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 }

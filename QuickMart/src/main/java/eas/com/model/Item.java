@@ -54,6 +54,10 @@ public class Item implements Cloneable {
         return this;
     }
 
+    public String getTaxableString(){
+        return this.taxable ? "Taxable" : "Tax-Exempt";
+    }
+
     @Override
     protected Object clone()  {
         Object o = null;

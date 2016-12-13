@@ -49,4 +49,9 @@ public class Inventory {
     public void addItemQuantity(InventoryItem inventoryItem){
         this.inventoryItemMap.put(inventoryItem.getItem().getName(), inventoryItem);
     }
+
+
+    public Map<String, InventoryItem> getInventoryItemMap() {
+        return inventoryItemMap;
+    }
 }
