@@ -81,14 +81,19 @@ public class ShoppingCartView {
     public String printInvoice(float cash) throws QuickMartException {
         String fileName = "transaction_" + this.shoppingCart.getTransaction() + "_" + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("ddMMyyyy")) + ".txt";
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)))
-        {
-            writer.write(this.generateCompleteData(cash, ""));
-        } catch (IOException e) {
-             throw new QuickMartException("Error to print invoice with transaction: " + this.shoppingCart.getTransaction());
+        File file = new File("QuickMartInvoices" + File.separator + fileName);
+        if (!file.getParentFile().exists()) {
+            if (!file.getParentFile().mkdir())
+                throw new QuickMartException("Error to create directory QuickMartInvoices (inside the user home directory) for saving the invoices ");
         }
 
-        return fileName;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(this.generateCompleteData(cash, ""));
+        } catch (IOException e) {
+            throw new QuickMartException("Error to print invoice with transaction: " + this.shoppingCart.getTransaction());
+        }
+
+        return file.getAbsolutePath();
     }
 
     public void printCompleteDataToStandardOutput(float cash, String header) {

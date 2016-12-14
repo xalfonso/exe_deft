@@ -83,11 +83,11 @@ public class App {
         System.out.println("--------- Option Selected: 0. Inventory. Fill --------------");
         System.out.println();
 
-       // System.out.print("Please enter the file name for loading the inventory: ");
-       // String fileName = consoleIn.readLine();
+       System.out.print("Please enter the file name for loading the inventory: ");
+       String fileName = consoleIn.readLine();
 
         try {
-            InventoryController.getCurrentInventoryController().loadDataFromFile("inventory.txt");
+            InventoryController.getCurrentInventoryController().loadDataFromFile(fileName);
             System.out.println("The data of the file is this: ");
 
             InventoryController.getCurrentInventoryController().viewInventoryTemporalData();

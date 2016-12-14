@@ -8,15 +8,36 @@
     <artifactId>quick-mart</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven-dependency.version>2.10</maven-dependency.version>
+        <main-class>eas.com.App</main-class>
+        <maven-jar.version>3.0.2</maven-jar.version>
+    </properties>
 
     <build>
         <plugins>
+            <!-- Plugin for compiling with specific jdk -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- Plugin for generating the jar file -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
+                            <mainClass>${main-class}</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
