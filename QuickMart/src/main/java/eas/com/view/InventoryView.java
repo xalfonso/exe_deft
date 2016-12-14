@@ -29,9 +29,9 @@ public class InventoryView {
     }
 
     /**
-     * Show the Inventory
+     * print the Inventory data to standard Output
      */
-    public void show() {
+    public void printToStandardOutput() {
         System.out.println("<item>: <quantity>, <regular price>, <member price>, <tax status>");
         this.inventory.getInventoryItemMap()
                 .forEach((k, v)
@@ -40,11 +40,11 @@ public class InventoryView {
 
 
     /**
-     * Show the temporal data of the inventory
+     * print the Inventory temporal data to standard Output
      *
      * @param inventoryItems to updateView
      */
-    public void showTemporalData(List<InventoryItem> inventoryItems) {
+    public void printTemporalDataToStandardOutput(List<InventoryItem> inventoryItems) {
         System.out.println("<item>: <quantity>, <regular price>, <member price>, <tax status>");
         inventoryItems
                 .forEach(v -> System.out.println(v.getItem().getName() + ": " + v.getQuantity() + ", $" + v.getItem().getUnitRegularPrice() + ", $" + v.getItem().getUnitMemberPrice() + ", " + v.getItem().getTaxableString()));

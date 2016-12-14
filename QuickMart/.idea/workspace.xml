@@ -26,8 +26,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-101">
-              <caret line="115" column="29" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+            <state relative-caret-position="203">
+              <caret line="125" column="40" selection-start-line="125" selection-start-column="40" selection-end-line="125" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,13 +35,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShoppingCartView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShoppingCartView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/view/ShoppingCartView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+            <state relative-caret-position="306">
+              <caret line="53" column="60" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3734#3735#0" expanded="true" />
+                <element signature="e#3801#3802#0" expanded="true" />
+                <element signature="e#3853#3854#0" expanded="true" />
+                <element signature="e#3913#3914#0" expanded="true" />
+                <element signature="method#readItem#0;class#ShoppingCartView#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,9 +55,12 @@
       <file leaf-file-name="InventoryController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/controller/InventoryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="336">
+              <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+              <folding>
+                <element signature="e#1192#1193#0" expanded="true" />
+                <element signature="e#1250#1251#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,12 +68,14 @@
       <file leaf-file-name="ShoppingController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/controller/ShoppingController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+            <state relative-caret-position="407">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1145#1146#0" expanded="true" />
-                <element signature="e#1211#1212#0" expanded="true" />
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1130#1131#0" expanded="true" />
+                <element signature="e#1174#1175#0" expanded="true" />
+                <element signature="e#1248#1249#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,17 +94,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoughtItem.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BoughtItem.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/model/BoughtItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="77" column="99" selection-start-line="77" selection-start-column="99" selection-end-line="77" selection-end-column="99" />
+            <state relative-caret-position="223">
+              <caret line="94" column="61" selection-start-line="94" selection-start-column="61" selection-end-line="94" selection-end-column="61" />
               <folding>
-                <element signature="e#413#414#0" expanded="true" />
-                <element signature="e#2059#2060#0" expanded="true" />
-                <element signature="e#2086#2087#0" expanded="true" />
-                <element signature="e#2118#2119#0" expanded="true" />
-                <element signature="e#2149#2150#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,7 +109,7 @@
       <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/model/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="374">
               <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
               <folding>
                 <element signature="e#757#758#0" expanded="true" />
@@ -113,22 +119,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Formatter.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Formatter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="2031" column="20" selection-start-line="2031" selection-start-column="11" selection-end-line="2031" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="InventoryView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/view/InventoryView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="49" column="117" selection-start-line="49" selection-start-column="117" selection-end-line="49" selection-end-column="117" />
-              <folding />
+            <state relative-caret-position="434">
+              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+              <folding>
+                <marker date="1481721085680" expanded="true" signature="559:621" ph="/**...*/" />
+                <marker date="1481721085680" expanded="true" signature="1053:1174" ph="/**...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,14 +156,14 @@
         <option value="$PROJECT_DIR$/src/main/java/eas/com/AppTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/inventory.txt" />
         <option value="$PROJECT_DIR$/src/main/java/eas/com/model/Inventory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eas/com/view/InventoryView.java" />
         <option value="$PROJECT_DIR$/src/main/java/eas/com/model/ShoppingCart.java" />
         <option value="$PROJECT_DIR$/src/main/java/eas/com/controller/InventoryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eas/com/App.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eas/com/model/BoughtItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eas/com/controller/ShoppingController.java" />
         <option value="$PROJECT_DIR$/src/main/java/eas/com/model/Item.java" />
+        <option value="$PROJECT_DIR$/src/main/java/eas/com/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/eas/com/controller/ShoppingController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/eas/com/view/InventoryView.java" />
         <option value="$PROJECT_DIR$/src/main/java/eas/com/view/ShoppingCartView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/eas/com/model/BoughtItem.java" />
       </list>
     </option>
   </component>
@@ -217,7 +216,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -390,8 +391,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -882,12 +881,13 @@
       <workItem from="1481590135995" duration="1524000" />
       <workItem from="1481629844665" duration="11731000" />
       <workItem from="1481642140464" duration="32000" />
-      <workItem from="1481658477579" duration="14923000" />
+      <workItem from="1481658477579" duration="15008000" />
+      <workItem from="1481717055823" duration="4793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54309000" />
+    <option name="totallyTimeSpent" value="59187000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -901,13 +901,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18929504" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5913838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.123125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -918,6 +917,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -942,6 +942,17 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/view/InventoryView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="49" column="117" selection-start-line="49" selection-start-column="117" selection-end-line="49" selection-end-column="117" />
+          <folding>
+            <marker date="1481721085680" expanded="true" signature="559:621" ph="/**...*/" />
+            <marker date="1481721085680" expanded="true" signature="1053:1174" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -967,7 +978,8 @@
         <state relative-caret-position="187">
           <caret line="18" column="46" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <marker date="1481721085680" expanded="true" signature="559:621" ph="/**...*/" />
+            <marker date="1481721085680" expanded="true" signature="1053:1174" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -987,7 +999,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <marker date="1481721085680" expanded="true" signature="559:621" ph="/**...*/" />
+            <marker date="1481721085680" expanded="true" signature="1053:1174" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -997,7 +1010,8 @@
         <state relative-caret-position="969">
           <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <marker date="1481721085680" expanded="true" signature="559:621" ph="/**...*/" />
+            <marker date="1481721085680" expanded="true" signature="1053:1174" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -1037,7 +1051,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="e#1192#1193#0" expanded="true" />
+            <element signature="e#1250#1251#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1053,7 +1070,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="30" column="5" selection-start-line="24" selection-start-column="4" selection-end-line="30" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1061,10 +1080,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1351#1352#0" expanded="false" />
-            <element signature="e#1378#1379#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1230,17 +1246,52 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Formatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
+        <state relative-caret-position="33422">
           <caret line="2031" column="20" selection-start-line="2031" selection-start-column="11" selection-end-line="2031" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/view/InventoryView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="49" column="117" selection-start-line="49" selection-start-column="117" selection-end-line="49" selection-end-column="117" />
-          <folding />
+          <folding>
+            <element signature="e#0#191191#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#81177#81178#0" expanded="false" />
+            <element signature="e#81261#81262#0" expanded="false" />
+            <element signature="e#81772#81773#0" expanded="false" />
+            <element signature="e#81857#81858#0" expanded="false" />
+            <element signature="e#82428#82429#0" expanded="false" />
+            <element signature="e#82472#82473#0" expanded="false" />
+            <element signature="e#82982#82983#0" expanded="false" />
+            <element signature="e#83027#83028#0" expanded="false" />
+            <element signature="e#100204#100205#0" expanded="false" />
+            <element signature="e#100240#100241#0" expanded="false" />
+            <element signature="e#101735#101736#0" expanded="false" />
+            <element signature="e#101781#101782#0" expanded="false" />
+            <element signature="e#108523#108524#0" expanded="false" />
+            <element signature="e#108559#108560#0" expanded="false" />
+            <element signature="e#108761#108762#0" expanded="false" />
+            <element signature="e#108793#108794#0" expanded="false" />
+            <element signature="e#109240#109241#0" expanded="false" />
+            <element signature="e#109276#109277#0" expanded="false" />
+            <element signature="e#109805#109806#0" expanded="false" />
+            <element signature="e#109845#109846#0" expanded="false" />
+            <element signature="e#110362#110363#0" expanded="false" />
+            <element signature="e#110394#110395#0" expanded="false" />
+            <element signature="e#149309#149310#0" expanded="false" />
+            <element signature="e#149351#149352#0" expanded="false" />
+            <element signature="e#149385#149386#0" expanded="false" />
+            <element signature="e#149429#149430#0" expanded="false" />
+            <element signature="e#149810#149811#0" expanded="false" />
+            <element signature="e#149866#149867#0" expanded="false" />
+            <element signature="e#150059#150060#0" expanded="false" />
+            <element signature="e#150114#150115#0" expanded="false" />
+            <element signature="e#180601#180602#0" expanded="false" />
+            <element signature="e#180634#180635#0" expanded="false" />
+            <element signature="e#180666#180667#0" expanded="false" />
+            <element signature="e#180702#180703#0" expanded="false" />
+            <element signature="e#180746#180747#0" expanded="false" />
+            <element signature="e#180813#180814#0" expanded="false" />
+            <element signature="e#180843#180844#0" expanded="false" />
+            <element signature="e#180890#180891#0" expanded="false" />
+            <element signature="e#182194#182195#0" expanded="false" />
+            <element signature="e#182237#182238#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1248,7 +1299,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1131">
           <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1256,7 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="93" column="11" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1271,53 +1320,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/model/BoughtItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="77" column="99" selection-start-line="77" selection-start-column="99" selection-end-line="77" selection-end-column="99" />
-          <folding>
-            <element signature="e#413#414#0" expanded="true" />
-            <element signature="e#2059#2060#0" expanded="true" />
-            <element signature="e#2086#2087#0" expanded="true" />
-            <element signature="e#2118#2119#0" expanded="true" />
-            <element signature="e#2149#2150#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/controller/InventoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/controller/ShoppingController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1145#1146#0" expanded="true" />
-            <element signature="e#1211#1212#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-101">
-          <caret line="115" column="29" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/model/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="374">
           <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
           <folding>
             <element signature="e#757#758#0" expanded="true" />
@@ -1326,10 +1331,95 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/BufferedWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="108" column="21" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/PrintStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="543" column="29" selection-start-line="543" selection-start-column="29" selection-end-line="543" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/StringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162">
+          <caret line="110" column="11" selection-start-line="110" selection-start-column="11" selection-end-line="110" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="125" column="40" selection-start-line="125" selection-start-column="40" selection-end-line="125" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/controller/ShoppingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/view/InventoryView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding>
+            <marker date="1481721085680" expanded="true" signature="559:621" ph="/**...*/" />
+            <marker date="1481721085680" expanded="true" signature="1053:1174" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/controller/InventoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+          <folding>
+            <element signature="e#1192#1193#0" expanded="true" />
+            <element signature="e#1250#1251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/view/ShoppingCartView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+        <state relative-caret-position="306">
+          <caret line="53" column="60" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3734#3735#0" expanded="true" />
+            <element signature="e#3801#3802#0" expanded="true" />
+            <element signature="e#3853#3854#0" expanded="true" />
+            <element signature="e#3913#3914#0" expanded="true" />
+            <element signature="method#readItem#0;class#ShoppingCartView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eas/com/model/BoughtItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="94" column="61" selection-start-line="94" selection-start-column="61" selection-end-line="94" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -4,8 +4,7 @@ import eas.com.exception.QuickMartException;
 import eas.com.model.BoughtItem;
 import eas.com.model.ShoppingCart;
 
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 /**
@@ -28,49 +27,86 @@ public class ShoppingCartView {
     }
 
     /**
-     * Show the Shopping Cart
+     * generate the complete data of the Shopping Cart
      */
-    public void generateViewShoppingCart(float cash) {
-        this.showBasicData();
+    private String generateCompleteData(float cash) {
         String padding = String.format("%20s", "");
-        System.out.println("ITEM" + padding + "QUANTITY" + padding + "UNIT PRICE" + padding + "TOTAL");
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+        StringBuilder stringBuilder = new StringBuilder(500);
+        stringBuilder.append(this.generateBasicData()).append(System.lineSeparator());
+        stringBuilder.append("ITEM")
+                .append(padding)
+                .append("QUANTITY")
+                .append(padding)
+                .append("UNIT PRICE")
+                .append(padding)
+                .append("TOTAL")
+                .append(System.lineSeparator());
+
         int totalItem = 0;
         float subTotalPrice = 0;
         float totalTax = 0;
         float savedMoney = 0;
 
         for (Map.Entry<String, BoughtItem> entry : this.shoppingCart.getBoughtItemMap().entrySet()) {
-            System.out.println(entry.getValue().toStringFormat(this.shoppingCart.isMemberCustomer()));
+            //System.out.println(entry.getValue().toStringFormat(this.shoppingCart.isMemberCustomer()));
+            stringBuilder.append(entry.getValue().toStringFormat(this.shoppingCart.isMemberCustomer())).append(System.lineSeparator());
             totalItem += entry.getValue().getQuantity();
             subTotalPrice += entry.getValue().getTotalPrice(this.shoppingCart.isMemberCustomer());
             totalTax += entry.getValue().getTotalTax(this.shoppingCart.isMemberCustomer());
             savedMoney += entry.getValue().getSavedMoney(this.shoppingCart.isMemberCustomer());
         }
 
-        System.out.println("******************************");
-        System.out.println("TOTAL NUMBER OF ITEMS SOLD: " + totalItem);
-        System.out.println("SUB-TOTAL: $" + subTotalPrice);
-        System.out.println("TAX (6.5%): $" + totalTax);
-        System.out.println("TOTAL : $" + (subTotalPrice + totalTax));
+
+        stringBuilder.append("******************************").append(System.lineSeparator());
+        //System.out.println("******************************");
+        stringBuilder.append("TOTAL NUMBER OF ITEMS SOLD: ").append(totalItem).append(System.lineSeparator());
+        //System.out.println("TOTAL NUMBER OF ITEMS SOLD: " + totalItem);
+        stringBuilder.append("SUB-TOTAL: $").append(Float.valueOf(decimalFormat.format(subTotalPrice))).append(System.lineSeparator());
+        //System.out.println("SUB-TOTAL: $" + subTotalPrice);
+        stringBuilder.append("TAX (6.5%): $").append( Float.valueOf(decimalFormat.format(totalTax))).append(System.lineSeparator());
+        //System.out.println("TAX (6.5%): $" + totalTax);
+        stringBuilder.append("TOTAL : $").append(Float.valueOf(decimalFormat.format((subTotalPrice + totalTax)))).append(System.lineSeparator());
+        //System.out.println("TOTAL : $" + (subTotalPrice + totalTax));
 
         if (cash != 0) {
-            System.out.println("CASH : $" + cash);
-            System.out.println("CHANGE : $" + (cash - (subTotalPrice + totalTax)));
+            stringBuilder.append("CASH : $").append(cash).append(System.lineSeparator());
+            stringBuilder.append("CHANGE : $").append((cash - (subTotalPrice + totalTax))).append(System.lineSeparator());
+
+            //System.out.println("CASH : $" + cash);
+            //System.out.println("CHANGE : $" + (cash - (subTotalPrice + totalTax)));
         }
 
         if (this.shoppingCart.isMemberCustomer())
-            System.out.println("YOU SAVED : $" + savedMoney + "!");
+            stringBuilder.append("YOU SAVED : $").append(Float.valueOf(decimalFormat.format(savedMoney))).append("!");
+        //System.out.println("YOU SAVED : $" + savedMoney + "!");
 
-
+        return stringBuilder.toString();
     }
 
+    public void printCompleteDataToStandardOutput(float cash) {
+        System.out.println(this.generateCompleteData(cash));
+    }
+
+    public void printBasicDataToStandardOutput() {
+        System.out.println(this.generateBasicData());
+    }
+
+
     /**
-     * Show the basic data from the shopping cart
+     * Generate the basic data of the shopping cart
      */
-    public void showBasicData() {
-        System.out.println(this.shoppingCart.getTypeCustomer());
+    private String generateBasicData() {
+        return this.shoppingCart.getTypeCustomer()
+                + System.lineSeparator()
+                + this.shoppingCart.getLocalDate()
+                + System.lineSeparator()
+                + "TRANSACTION: " + this.shoppingCart.getTransaction();
+
+        /*System.out.println(this.shoppingCart.getTypeCustomer());
         System.out.println(this.shoppingCart.getLocalDate());
-        System.out.println("TRANSACTION: " + this.shoppingCart.getTransaction());
+        System.out.println("TRANSACTION: " + this.shoppingCart.getTransaction());*/
     }
 
     /**

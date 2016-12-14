@@ -3,6 +3,8 @@ package eas.com.model;
 
 import eas.com.exception.QuickMartException;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by eduardo on 12/12/2016.
  */
@@ -90,9 +92,10 @@ public class BoughtItem {
 
 
     public String toStringFormat(boolean isMemeberCustomer) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String quantityString = String.valueOf(this.quantity);
         String unitPriceString = String.valueOf(this.getItem().getUnitPrice(isMemeberCustomer));
-        String totalPriceString = String.valueOf(this.getTotalPrice(isMemeberCustomer));
+        String totalPriceString = String.valueOf(Float.valueOf(decimalFormat.format(this.getTotalPrice(isMemeberCustomer))));
 
         return this.getItem().getName()
                 + String.format("%" + (24 - this.getItem().getName().length()) + "s", "")

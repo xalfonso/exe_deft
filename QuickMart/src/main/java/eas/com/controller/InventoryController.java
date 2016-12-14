@@ -56,7 +56,7 @@ public class InventoryController {
 
 
     public void updateView() {
-        this.inventoryView.show();
+        this.inventoryView.printToStandardOutput();
     }
 
 
@@ -68,7 +68,7 @@ public class InventoryController {
         if (this.inventoryItemsTemp == null)
             throw new QuickMartException("There is not temporal data from file inventory leaded");
 
-        this.inventoryView.showTemporalData(this.inventoryItemsTemp);
+        this.inventoryView.printTemporalDataToStandardOutput(this.inventoryItemsTemp);
     }
 
     public void fillInventory() {

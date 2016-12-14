@@ -41,11 +41,11 @@ public class ShoppingController {
     }
 
     public void updateViewBasicData() {
-        this.shoppingCartView.showBasicData();
+        this.shoppingCartView.printBasicDataToStandardOutput();
     }
 
-    public void updateView() {
-        this.shoppingCartView.generateViewShoppingCart(50);
+    public void updateViewCompleteData() {
+        this.shoppingCartView.printCompleteDataToStandardOutput(0);
     }
 
     public void addItem(String itemNameQuantity) throws QuickMartException {

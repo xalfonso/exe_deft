@@ -158,7 +158,7 @@ public class App {
         System.out.print("Please, select one item and its quantity from inventory. (For example: Milk,3) :");
         try {
             ShoppingController.getCurrentShoppingController().addItem(consoleIn.readLine());
-            ShoppingController.getCurrentShoppingController().updateView();
+            ShoppingController.getCurrentShoppingController().updateViewCompleteData();
         } catch (QuickMartException e) {
             System.out.println(e.getMessage());
         }
