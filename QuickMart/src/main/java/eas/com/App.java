@@ -33,31 +33,32 @@ public class App {
                     viewInventoryOption();
                     break;
                 case "2":
-                    saleRewardsMember();
+                    saleRewardsMemberOption();
                     break;
                 case "3":
-                    saleRegularMember();
+                    saleRegularMemberOption();
                     break;
                 case "4":
-                    addItemShoppingCart();
+                    addItemShoppingCartOption();
                     break;
                 case "5":
-                    System.out.println("Option Selected: 5");
+                    removeItemShoppingCartOption();
                     break;
                 case "6":
-                    System.out.println("Option Selected: 6");
+                    emptyShoppingCartOption();
                     break;
                 case "7":
-                    System.out.println("Option Selected: 7");
+                    viewShoppingCartOption();
                     break;
                 case "8":
-                    System.out.println("Option Selected: 8");
+                    checkoutAndPrintReceiptOption();
                     break;
                 case "9":
-                    System.out.println("Option Selected: 9");
+                    cancelTransactionOption();
                     break;
                 case "X":
                     System.out.println("Option Selected: Close Application");
+                    System.out.println("Bye...");
                     break;
             }
         }
@@ -74,7 +75,7 @@ public class App {
         System.out.println("----- 6. Sopping Cart. Empty ------------------------------ ");
         System.out.println("----- 7. Sopping Cart. View ------------------------------- ");
         System.out.println("----- 8. Sopping Cart. Checkout and Print receipt --------- ");
-        System.out.println("----- 9. Sopping Cart. Cancel Transaction-------- --------- ");
+        System.out.println("----- 9. Sopping Cart. Cancel Transaction------------------ ");
         System.out.println("----- X. Close Application -------------------------------- ");
     }
 
@@ -82,14 +83,14 @@ public class App {
         System.out.println("--------- Option Selected: 0. Inventory. Fill --------------");
         System.out.println();
 
-        System.out.print("Please enter the file name for loading the inventory: ");
-        String fileName = consoleIn.readLine();
+       // System.out.print("Please enter the file name for loading the inventory: ");
+       // String fileName = consoleIn.readLine();
 
         try {
-            InventoryController.getCurrentInventoryController().loadDataFromFile(fileName);
+            InventoryController.getCurrentInventoryController().loadDataFromFile("inventory.txt");
             System.out.println("The data of the file is this: ");
 
-            InventoryController.getCurrentInventoryController().showTempDataFromFile();
+            InventoryController.getCurrentInventoryController().viewInventoryTemporalData();
 
             System.out.print("Are you sure that you want to load this data into the inventory? (s) for confirm, other letter otherwise: ");
             String sureLoad = consoleIn.readLine();
@@ -112,36 +113,36 @@ public class App {
     private static void viewInventoryOption() {
         System.out.println("--------- Option Selected: 1. Inventory. View --------------");
         System.out.println();
-        InventoryController.getCurrentInventoryController().updateView();
+        InventoryController.getCurrentInventoryController().viewInventory();
         System.out.println();
     }
 
-    private static void saleRewardsMember() {
+    private static void saleRewardsMemberOption() {
         System.out.println("--------- Option Selected: 2. Sale. Rewards Member --------");
 
         try {
             ShoppingController.createNewShoppingControllerMemberCustomer();
             System.out.println("The operation was made correctly. New Customer/Shopping cart was created: ");
-            ShoppingController.getCurrentShoppingController().updateViewBasicData();
+            ShoppingController.getCurrentShoppingController().viewShoppingCartBasicData();
         } catch (QuickMartException e) {
             System.out.println("In this moment you are taking care of the transaction:  " + ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction() + ". Please, finish it for create a new");
         }
     }
 
-    private static void saleRegularMember() {
+    private static void saleRegularMemberOption() {
         System.out.println("--------- Option Selected: 3. Sale. Regular Member --------");
 
         try {
             ShoppingController.createNewShoppingControllerRegularCustomer();
             System.out.println("The operation was made correctly. New Customer/Shopping cart was created: ");
-            ShoppingController.getCurrentShoppingController().updateViewBasicData();
+            ShoppingController.getCurrentShoppingController().viewShoppingCartBasicData();
         } catch (QuickMartException e) {
             System.out.println("The operation is not valid. In this moment you are taking care of the transaction:  " + ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction() + ". Please, finish it for create a new");
         }
 
     }
 
-    private static void addItemShoppingCart() throws IOException {
+    private static void addItemShoppingCartOption() throws IOException {
         System.out.println("--------- Option Selected: 4. Shopping Cart. Add Item -----");
 
         if (InventoryController.getCurrentInventoryController().isInventoryEmpty()) {
@@ -154,19 +155,120 @@ public class App {
             return;
         }
 
-        InventoryController.getCurrentInventoryController().updateView();
+        InventoryController.getCurrentInventoryController().viewInventory();
         System.out.print("Please, select one item and its quantity from inventory. (For example: Milk,3) :");
         try {
             ShoppingController.getCurrentShoppingController().addItem(consoleIn.readLine());
-            ShoppingController.getCurrentShoppingController().updateViewCompleteData();
+            ShoppingController.getCurrentShoppingController().viewShoppingCart();
         } catch (QuickMartException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    private static void showShoppingCart(){
+    private static void removeItemShoppingCartOption() throws IOException {
+        System.out.println("--------- Option Selected: 5. Shopping Cart. Add Item -----");
+
+        if (ShoppingController.getCurrentShoppingController() == null) {
+            System.out.println("The operation is not valid. There is no a shopping cart created. Please, create member or regular customer");
+            return;
+        }
+
+        if (ShoppingController.getCurrentShoppingController().isShoppingCartEmpty()) {
+            System.out.println("The operation is not valid. The Shopping Cart is empty. Please, fill the ShoppingCart");
+            return;
+        }
+
+        ShoppingController.getCurrentShoppingController().viewShoppingCart();
+        System.out.print("Please, select one item and its quantity from Shopping Cart. (For example: Milk,3) :");
+        try {
+            ShoppingController.getCurrentShoppingController().removeItem(consoleIn.readLine());
+            ShoppingController.getCurrentShoppingController().viewShoppingCart();
+        } catch (QuickMartException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
+
+
+    private static void emptyShoppingCartOption() throws IOException {
+        System.out.println("--------- Option Selected: 6. Shopping Cart. Empty ------");
+
+        if (ShoppingController.getCurrentShoppingController() == null) {
+            System.out.println("The operation is not valid. There is no a shopping cart created. Please, create member or regular customer");
+            return;
+        }
+
+        System.out.print("Are you sure that you want to empty the Shopping Cart? (s) for confirm, other letter otherwise: ");
+
+        String sureEmpty = consoleIn.readLine();
+        if (sureEmpty.equalsIgnoreCase("s")) {
+            ShoppingController.getCurrentShoppingController().emptyShoppingCart();
+            System.out.println("The Shopping Cart was emptied");
+            ShoppingController.getCurrentShoppingController().viewShoppingCart();
+        } else {
+            System.out.println("Operation cancelled");
+        }
+
+    }
+
+    private static void viewShoppingCartOption() {
+        System.out.println("--------- Option Selected: 7. Shopping Cart. View -------");
+
+        if (ShoppingController.getCurrentShoppingController() == null) {
+            System.out.println("The operation is not valid. There is no a shopping cart created. Please, create member or regular customer");
+            return;
+        }
+
+        ShoppingController.getCurrentShoppingController().viewShoppingCart();
+    }
+
+    private static void checkoutAndPrintReceiptOption() throws IOException {
+        System.out.println("--------- Option Selected: 8. Checkout and Print receipt-");
+
+        if (ShoppingController.getCurrentShoppingController() == null) {
+            System.out.println("The operation is not valid. There is no a shopping cart created. Please, create member or regular customer");
+            return;
+        }
+
+
+        String transaction = ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction();
+        System.out.println("We are finalizing the transaction: " + transaction + ". Please enter the money: ");
+
+        try {
+            float cash = Float.valueOf(consoleIn.readLine());
+            ShoppingController.getCurrentShoppingController().checkoutAndPrintReceipt(cash);
+            System.out.println("The operation was made correctly. The transaction: " + transaction + " has finished");
+        } catch (NumberFormatException e) {
+            System.out.println("The value introduced is wrong");
+        } catch (QuickMartException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+    private static void cancelTransactionOption() throws IOException {
+        System.out.println("--------- Option Selected: 9. Sopping Cart. Cancel Transaction-");
+
+        if (ShoppingController.getCurrentShoppingController() == null) {
+            System.out.println("The operation is not valid. There is no a shopping cart created. Please, create member or regular customer");
+            return;
+        }
+
+        String transaction = ShoppingController.getCurrentShoppingController().getShoppingCart().getTransaction();
+
+        System.out.print("Are you sure that you want to discard the transaction: " + transaction + " ? (s) for confirm, other letter otherwise: ");
+
+        String sureDiscard = consoleIn.readLine();
+        if (sureDiscard.equalsIgnoreCase("s")) {
+            ShoppingController.getCurrentShoppingController().cancelTransaction();
+            System.out.println("The transaction: " + transaction + " was cancelled");
+        } else {
+            System.out.println("Operation cancelled. The transaction is still open");
+        }
+
+    }
+
 
 }

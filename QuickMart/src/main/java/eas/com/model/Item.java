@@ -31,7 +31,7 @@ public class Item implements Cloneable {
         return taxable;
     }
 
-    public float diferenceMemberRegularPrice(){
+    public float differenceMemberRegularPrice(){
         return this.unitRegularPrice - this.unitMemberPrice;
     }
 
@@ -61,7 +61,33 @@ public class Item implements Cloneable {
         return this.taxable ? "Taxable" : "Tax-Exempt";
     }
 
+
+
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (Float.compare(item.unitRegularPrice, unitRegularPrice) != 0) return false;
+        if (Float.compare(item.unitMemberPrice, unitMemberPrice) != 0) return false;
+        if (taxable != item.taxable) return false;
+        return name.equals(item.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (unitRegularPrice != +0.0f ? Float.floatToIntBits(unitRegularPrice) : 0);
+        result = 31 * result + (unitMemberPrice != +0.0f ? Float.floatToIntBits(unitMemberPrice) : 0);
+        result = 31 * result + (taxable ? 1 : 0);
+        return result;
+    }
+
+
+    /*@Override
     protected Object clone()  {
         Object o = null;
         try{
@@ -70,5 +96,5 @@ public class Item implements Cloneable {
             e.printStackTrace();
         }
         return o;
-    }
+    }*/
 }

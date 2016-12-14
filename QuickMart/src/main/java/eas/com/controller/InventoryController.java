@@ -2,8 +2,7 @@ package eas.com.controller;
 
 import eas.com.exception.QuickMartException;
 import eas.com.model.Inventory;
-import eas.com.model.InventoryItem;
-import eas.com.model.Item;
+import eas.com.model.ItemQuantity;
 import eas.com.view.InventoryView;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class InventoryController {
     /**
      * For temporal data, the user need to confirm
      */
-    private List<InventoryItem> inventoryItemsTemp;
+    private List<ItemQuantity> inventoryItemsTemp;
 
 
     private InventoryController() {
@@ -55,7 +54,7 @@ public class InventoryController {
     }
 
 
-    public void updateView() {
+    public void viewInventory() {
         this.inventoryView.printToStandardOutput();
     }
 
@@ -64,7 +63,7 @@ public class InventoryController {
         this.inventoryItemsTemp = this.inventoryView.readDataFromFile(file);
     }
 
-    public void showTempDataFromFile() throws QuickMartException {
+    public void viewInventoryTemporalData() throws QuickMartException {
         if (this.inventoryItemsTemp == null)
             throw new QuickMartException("There is not temporal data from file inventory leaded");
 
@@ -72,7 +71,7 @@ public class InventoryController {
     }
 
     public void fillInventory() {
-        Iterator<InventoryItem> it = this.inventoryItemsTemp.iterator();
+        Iterator<ItemQuantity> it = this.inventoryItemsTemp.iterator();
         while (it.hasNext()) {
             this.inventory.addItemQuantity(it.next());
             it.remove();
@@ -85,8 +84,12 @@ public class InventoryController {
     }
 
 
-    public Item removeFromInventory(String nameItem, int quantity) throws QuickMartException {
+    public ItemQuantity removeFromInventory(String nameItem, int quantity) throws QuickMartException {
         return this.inventory.removeItemQuantity(nameItem, quantity);
+    }
+
+    public void addItemToInventory(ItemQuantity inventoryItem){
+        this.inventory.addItemQuantity(inventoryItem);
     }
 
     /**

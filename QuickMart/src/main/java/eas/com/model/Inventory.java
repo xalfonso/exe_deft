@@ -7,12 +7,12 @@ import java.util.Map;
 
 /**
  * Class for simulating the inventory of item
- *
+ * <p>
  * Created by eduardo on 12/12/2016.
  */
 public class Inventory {
 
-    private Map<String, InventoryItem> inventoryItemMap;
+    private Map<String, ItemQuantity> inventoryItemMap;
 
 
     public Inventory() {
@@ -21,45 +21,47 @@ public class Inventory {
 
     /**
      * Remove a count of item from inventory
+     *
      * @param nameItem name of item
      * @param quantity count of items
-     * @return item
+     * @return ItemQuantity
      * @throws QuickMartException if do not exist the item or the count is not enough
      */
-    public Item removeItemQuantity(String nameItem, int quantity) throws QuickMartException {
-        InventoryItem inventoryItem;
+    public ItemQuantity removeItemQuantity(String nameItem, int quantity) throws QuickMartException {
+        ItemQuantity inventoryItem;
         if ((inventoryItem = this.inventoryItemMap.get(nameItem)) == null) {
             throw new QuickMartException("There is not the item: " + nameItem + " in the inventory");
         }
 
-        Item item = inventoryItem.decreaseQuantity(quantity);
+        ItemQuantity itemQuantityDecrement = inventoryItem.decrease(quantity);
         if (inventoryItem.isItemSoldOut())
             this.inventoryItemMap.remove(nameItem);
 
-        return item;
+        return itemQuantityDecrement;
     }
 
-
     /**
-     * If there are more of one line with the same item (same name)
-     * Only the latter item remains
+     * Add item quantity
      *
-     * @param inventoryItem to save in the inventory
+     * @param itemQuantity to save in the inventory
      */
-    public void addItemQuantity(InventoryItem inventoryItem){
-        this.inventoryItemMap.put(inventoryItem.getItem().getName(), inventoryItem);
+    public void addItemQuantity(ItemQuantity itemQuantity) {
+        if (this.inventoryItemMap.containsKey(itemQuantity.getItem().getName())) {
+            this.inventoryItemMap.get(itemQuantity.getItem().getName()).increase(itemQuantity);
+        } else {
+            this.inventoryItemMap.put(itemQuantity.getItem().getName(), itemQuantity);
+        }
     }
 
     /**
-     *
      * @return true is the inventory is empty, false otherwise
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.inventoryItemMap.isEmpty();
     }
 
 
-    public Map<String, InventoryItem> getInventoryItemMap() {
+    public Map<String, ItemQuantity> getInventoryItemMap() {
         return inventoryItemMap;
     }
 }

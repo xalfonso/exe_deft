@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class ShoppingCart {
 
-    private Map<String, BoughtItem> boughtItemMap;
+    private Map<String, ItemQuantity> boughtItemMap;
 
     /**
      * False: Regular Customer
@@ -32,7 +32,7 @@ public class ShoppingCart {
     private LocalDate localDate;
 
     public ShoppingCart(boolean memberCustomer, String transaction) {
-        this.boughtItemMap = new HashMap<String, BoughtItem>();
+        this.boughtItemMap = new HashMap<>();
         this.memberCustomer = memberCustomer;
         this.transaction = transaction;
         this.localDate = LocalDate.now();
@@ -42,38 +42,37 @@ public class ShoppingCart {
      * Remove a count of item from shopping cart
      * @param nameItem name of item
      * @param quantity count of items
-     * @return item
+     * @return ItemQuantity
      * @throws QuickMartException if do not exist the item or the count is not enough
      */
-    public Item removeItem(String nameItem, int quantity) throws QuickMartException {
-        BoughtItem boughtItem;
-
+    public ItemQuantity removeItemQuantity(String nameItem, int quantity) throws QuickMartException {
+        ItemQuantity boughtItem;
         if ((boughtItem = this.boughtItemMap.get(nameItem)) == null) {
             throw new QuickMartException("There is not the item: " + nameItem + " in the shopping cart");
         }
 
-        Item item = boughtItem.decreaseQuantity(quantity);
+     ItemQuantity itemQuantityDecrement = boughtItem.decrease(quantity);
 
-        if (boughtItem.isItemOut())
+        if (boughtItem.isItemSoldOut())
             this.boughtItemMap.remove(nameItem);
 
-        return item;
+        return itemQuantityDecrement;
     }
 
     /**
      * Add an item to shopping cart
      *
-     * @param item for adding
-     * @param quantity count of item for adding
+     * @param itemQuantity for adding
      */
-    public void addItem(Item item, int quantity) {
-        if (!this.boughtItemMap.containsKey(item.getName())) {
-            BoughtItem boughtItem = new BoughtItem(item, quantity);
-            this.boughtItemMap.put(item.getName(), boughtItem);
+    public void addItemQuantity(ItemQuantity itemQuantity) {
+        if (!this.boughtItemMap.containsKey(itemQuantity.getItem().getName())) {
+            this.boughtItemMap.put(itemQuantity.getItem().getName(), itemQuantity);
         } else {
-            this.boughtItemMap.get(item.getName()).increaseQualityBy(quantity);
+            this.boughtItemMap.get(itemQuantity.getItem().getName()).increase(itemQuantity);
         }
     }
+
+
 
     public boolean isMemberCustomer() {
         return memberCustomer;
@@ -91,7 +90,11 @@ public class ShoppingCart {
         return localDate;
     }
 
-    public Map<String, BoughtItem> getBoughtItemMap() {
+    public Map<String, ItemQuantity> getBoughtItemMap() {
         return boughtItemMap;
+    }
+
+    public boolean isEmpty(){
+        return this.boughtItemMap.isEmpty();
     }
 }

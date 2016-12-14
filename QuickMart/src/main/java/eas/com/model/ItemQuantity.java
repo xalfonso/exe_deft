@@ -1,67 +1,58 @@
 package eas.com.model;
 
-
 import eas.com.exception.QuickMartException;
 
 import java.text.DecimalFormat;
 
 /**
- * Created by eduardo on 12/12/2016.
+ * Created by eduardo on 12/14/2016.
  */
-public class BoughtItem {
+public class ItemQuantity {
 
     private Item item;
     private int quantity;
 
-    public BoughtItem(Item item, int quantity) {
+
+    public ItemQuantity(Item item, int quantity) {
         this.item = item;
         this.quantity = quantity;
     }
 
 
     /**
-     * @return true if the item is out, false otherwise
+     * @return true if the item is sold out, false otherwise
      */
-    public boolean isItemOut() {
+    public boolean isItemSoldOut() {
         return this.quantity == 0;
     }
 
-    /**
-     * @param demand for comparing if exist enough items
-     * @return true is exist enough items, false otherwise
-     */
-    private boolean isThereEnough(int demand) {
-        return this.quantity >= demand;
-    }
 
     /**
-     * Increase the number of this item kind
+     * Increase the quantity of the item
      *
-     * @param value number of items for increasing
+     * @param itemQuantity to increase
      */
-    public void increaseQualityBy(int value) {
-        this.quantity += value;
+    public void increase(ItemQuantity itemQuantity) {
+        this.quantity += itemQuantity.getQuantity();
     }
 
 
     /**
-     * Decrease the number of items
+     * Decrease the quantity of the item
      *
-     * @param value number of items for removing
-     * @return item
-     * @throws QuickMartException if no exist enough item
+     * @param value to increase
      */
-    public Item decreaseQuantity(int value) throws QuickMartException {
-        if (!this.isThereEnough(value)) {
-            throw new QuickMartException("There is not enough items of type: " + this.item.getName() + " in the shopping cart");
+    public ItemQuantity decrease(int value) throws QuickMartException {
+        if (value > this.quantity) {
+            throw new QuickMartException("There is not enough items of type: " + this.item.getName() + " in the inventory");
         }
 
         this.quantity -= value;
-        return ((Item) this.item.clone());
+        return new ItemQuantity(this.item, value);
     }
 
-
     /**
+     * @param isMemberCustomer if the customer is member or not
      * @return total price depending on type of customer
      */
     public float getTotalPrice(boolean isMemberCustomer) {
@@ -69,17 +60,22 @@ public class BoughtItem {
     }
 
     /**
-     *
+     * @param isMemberCustomer if the customer is member or not
      * @return total tax depending on type of customer
      */
     public float getTotalTax(boolean isMemberCustomer){
         return this.getItem().isTaxable() ? this.getTotalPrice(isMemberCustomer) * 0.065f : 0;
     }
 
-    public float getSavedMoney(boolean isMemberCustomer){
-        return isMemberCustomer ? this.getItem().diferenceMemberRegularPrice() * this.quantity : 0;
-    }
 
+    /**
+     *
+     * @param isMemberCustomer if the customer is member or not
+     * @return saved money
+     */
+    public float getSavedMoney(boolean isMemberCustomer){
+        return isMemberCustomer ? this.getItem().differenceMemberRegularPrice() * this.quantity : 0;
+    }
 
 
     public Item getItem() {
@@ -90,12 +86,11 @@ public class BoughtItem {
         return quantity;
     }
 
-
-    public String toStringFormat(boolean isMemeberCustomer) {
+    public String toStringFormatShoppingCart(boolean isMemberCustomer) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String quantityString = String.valueOf(this.quantity);
-        String unitPriceString = String.valueOf(this.getItem().getUnitPrice(isMemeberCustomer));
-        String totalPriceString = String.valueOf(Float.valueOf(decimalFormat.format(this.getTotalPrice(isMemeberCustomer))));
+        String unitPriceString = String.valueOf(this.getItem().getUnitPrice(isMemberCustomer));
+        String totalPriceString = String.valueOf(Float.valueOf(decimalFormat.format(this.getTotalPrice(isMemberCustomer))));
 
         return this.getItem().getName()
                 + String.format("%" + (24 - this.getItem().getName().length()) + "s", "")

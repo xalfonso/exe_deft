@@ -1,10 +1,12 @@
 package eas.com.view;
 
 import eas.com.exception.QuickMartException;
-import eas.com.model.BoughtItem;
+import eas.com.model.ItemQuantity;
 import eas.com.model.ShoppingCart;
 
+import java.io.*;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
@@ -29,11 +31,12 @@ public class ShoppingCartView {
     /**
      * generate the complete data of the Shopping Cart
      */
-    private String generateCompleteData(float cash) {
+    private String generateCompleteData(float cash, String header) {
         String padding = String.format("%20s", "");
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
         StringBuilder stringBuilder = new StringBuilder(500);
+        stringBuilder.append(header).append(System.lineSeparator());
         stringBuilder.append(this.generateBasicData()).append(System.lineSeparator());
         stringBuilder.append("ITEM")
                 .append(padding)
@@ -49,9 +52,8 @@ public class ShoppingCartView {
         float totalTax = 0;
         float savedMoney = 0;
 
-        for (Map.Entry<String, BoughtItem> entry : this.shoppingCart.getBoughtItemMap().entrySet()) {
-            //System.out.println(entry.getValue().toStringFormat(this.shoppingCart.isMemberCustomer()));
-            stringBuilder.append(entry.getValue().toStringFormat(this.shoppingCart.isMemberCustomer())).append(System.lineSeparator());
+        for (Map.Entry<String, ItemQuantity> entry : this.shoppingCart.getBoughtItemMap().entrySet()) {
+            stringBuilder.append(entry.getValue().toStringFormatShoppingCart(this.shoppingCart.isMemberCustomer())).append(System.lineSeparator());
             totalItem += entry.getValue().getQuantity();
             subTotalPrice += entry.getValue().getTotalPrice(this.shoppingCart.isMemberCustomer());
             totalTax += entry.getValue().getTotalTax(this.shoppingCart.isMemberCustomer());
@@ -60,33 +62,37 @@ public class ShoppingCartView {
 
 
         stringBuilder.append("******************************").append(System.lineSeparator());
-        //System.out.println("******************************");
         stringBuilder.append("TOTAL NUMBER OF ITEMS SOLD: ").append(totalItem).append(System.lineSeparator());
-        //System.out.println("TOTAL NUMBER OF ITEMS SOLD: " + totalItem);
         stringBuilder.append("SUB-TOTAL: $").append(Float.valueOf(decimalFormat.format(subTotalPrice))).append(System.lineSeparator());
-        //System.out.println("SUB-TOTAL: $" + subTotalPrice);
-        stringBuilder.append("TAX (6.5%): $").append( Float.valueOf(decimalFormat.format(totalTax))).append(System.lineSeparator());
-        //System.out.println("TAX (6.5%): $" + totalTax);
+        stringBuilder.append("TAX (6.5%): $").append(Float.valueOf(decimalFormat.format(totalTax))).append(System.lineSeparator());
         stringBuilder.append("TOTAL : $").append(Float.valueOf(decimalFormat.format((subTotalPrice + totalTax)))).append(System.lineSeparator());
-        //System.out.println("TOTAL : $" + (subTotalPrice + totalTax));
 
         if (cash != 0) {
             stringBuilder.append("CASH : $").append(cash).append(System.lineSeparator());
-            stringBuilder.append("CHANGE : $").append((cash - (subTotalPrice + totalTax))).append(System.lineSeparator());
-
-            //System.out.println("CASH : $" + cash);
-            //System.out.println("CHANGE : $" + (cash - (subTotalPrice + totalTax)));
+            stringBuilder.append("CHANGE : $").append(Float.valueOf(decimalFormat.format(cash - (subTotalPrice + totalTax)))).append(System.lineSeparator());
         }
 
         if (this.shoppingCart.isMemberCustomer())
             stringBuilder.append("YOU SAVED : $").append(Float.valueOf(decimalFormat.format(savedMoney))).append("!");
-        //System.out.println("YOU SAVED : $" + savedMoney + "!");
 
         return stringBuilder.toString();
     }
 
-    public void printCompleteDataToStandardOutput(float cash) {
-        System.out.println(this.generateCompleteData(cash));
+    public String printInvoice(float cash) throws QuickMartException {
+        String fileName = "transaction_" + this.shoppingCart.getTransaction() + "_" + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("ddMMyyyy")) + ".txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)))
+        {
+            writer.write(this.generateCompleteData(cash, ""));
+        } catch (IOException e) {
+             throw new QuickMartException("Error to print invoice with transaction: " + this.shoppingCart.getTransaction());
+        }
+
+        return fileName;
+    }
+
+    public void printCompleteDataToStandardOutput(float cash, String header) {
+        System.out.println(this.generateCompleteData(cash, header));
     }
 
     public void printBasicDataToStandardOutput() {
@@ -100,13 +106,9 @@ public class ShoppingCartView {
     private String generateBasicData() {
         return this.shoppingCart.getTypeCustomer()
                 + System.lineSeparator()
-                + this.shoppingCart.getLocalDate()
+                + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))
                 + System.lineSeparator()
                 + "TRANSACTION: " + this.shoppingCart.getTransaction();
-
-        /*System.out.println(this.shoppingCart.getTypeCustomer());
-        System.out.println(this.shoppingCart.getLocalDate());
-        System.out.println("TRANSACTION: " + this.shoppingCart.getTransaction());*/
     }
 
     /**

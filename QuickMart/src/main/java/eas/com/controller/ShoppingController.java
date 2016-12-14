@@ -1,9 +1,12 @@
 package eas.com.controller;
 
 import eas.com.exception.QuickMartException;
-import eas.com.model.Item;
+import eas.com.model.ItemQuantity;
 import eas.com.model.ShoppingCart;
 import eas.com.view.ShoppingCartView;
+
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Class for managing the Shopping Cart
@@ -40,20 +43,49 @@ public class ShoppingController {
         this.shoppingCartView = new ShoppingCartView(this.shoppingCart);
     }
 
-    public void updateViewBasicData() {
+    public void viewShoppingCartBasicData() {
         this.shoppingCartView.printBasicDataToStandardOutput();
     }
 
-    public void updateViewCompleteData() {
-        this.shoppingCartView.printCompleteDataToStandardOutput(0);
+    public void viewShoppingCart() {
+        this.shoppingCartView.printCompleteDataToStandardOutput(0, "Pre-View");
+    }
+
+    public void checkoutAndPrintReceipt(float cash) throws QuickMartException {
+         String fileName = this.shoppingCartView.printInvoice(cash);
+         this.shoppingCartView.printCompleteDataToStandardOutput(cash, fileName);
+         currentShoppingController = null;
+    }
+
+    public void cancelTransaction(){
+        this.emptyShoppingCart();
+        currentShoppingController = null;
     }
 
     public void addItem(String itemNameQuantity) throws QuickMartException {
         Object[] itemNameAndQuantity = this.shoppingCartView.readItem(itemNameQuantity);
-        Item item = InventoryController.getCurrentInventoryController().removeFromInventory((String) itemNameAndQuantity[0], (Integer) itemNameAndQuantity[1]);
-        currentShoppingController.getShoppingCart().addItem(item, (Integer) itemNameAndQuantity[1]);
+        ItemQuantity itemQuantity = InventoryController.getCurrentInventoryController().removeFromInventory((String) itemNameAndQuantity[0], (Integer) itemNameAndQuantity[1]);
+        currentShoppingController.getShoppingCart().addItemQuantity(itemQuantity);
     }
 
+    public void removeItem(String itemNameQuantity) throws QuickMartException {
+        Object[] itemNameAndQuantity = this.shoppingCartView.readItem(itemNameQuantity);
+        ItemQuantity itemQuantity = currentShoppingController.getShoppingCart().removeItemQuantity((String) itemNameAndQuantity[0], (Integer) itemNameAndQuantity[1]);
+        InventoryController.getCurrentInventoryController().addItemToInventory(itemQuantity);
+    }
+
+
+    /**
+     * Empty the shopping cart
+     */
+    public void emptyShoppingCart(){
+        Iterator<Map.Entry<String, ItemQuantity>> iterator = this.getShoppingCart().getBoughtItemMap().entrySet().iterator();
+
+        while(iterator.hasNext()){
+            InventoryController.getCurrentInventoryController().addItemToInventory(iterator.next().getValue());
+            iterator.remove();
+        }
+    }
 
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
@@ -64,8 +96,13 @@ public class ShoppingController {
         return String.format("%06d", transaction);
     }
 
+    public boolean isShoppingCartEmpty(){
+        return this.shoppingCart.isEmpty();
+    }
+
+
     /**
-     * Singleton instance. Only exist on shopping cart controller in each time
+     * Create Singleton instance. Only exist on shopping cart controller in each time
      *
      * @throws QuickMartException if already exist one instance of ShoppingController class
      */
@@ -77,7 +114,7 @@ public class ShoppingController {
 
 
     /**
-     * Singleton instance. Only exist on shopping cart controller in each time
+     * Create Singleton instance. Only exist on shopping cart controller in each time
      *
      * @throws QuickMartException if already exist one instance of ShoppingController class
      */
@@ -87,14 +124,12 @@ public class ShoppingController {
         currentShoppingController = new ShoppingController(false, generateIdTransaction());
     }
 
+
     /**
-     * This method must be called before create other instance of class removeCurrentShoppingCartController
+     * Get the singleton instance
+     *
+     * @return instance of ShoppingController
      */
-    public static void removeCurrentShoppingCartController() {
-        currentShoppingController = null;
-    }
-
-
     public static ShoppingController getCurrentShoppingController() {
         return currentShoppingController;
     }

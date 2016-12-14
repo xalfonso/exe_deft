@@ -2,10 +2,13 @@ package eas.com.view;
 
 import eas.com.exception.QuickMartException;
 import eas.com.model.Inventory;
-import eas.com.model.InventoryItem;
 import eas.com.model.Item;
+import eas.com.model.ItemQuantity;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +45,11 @@ public class InventoryView {
     /**
      * print the Inventory temporal data to standard Output
      *
-     * @param inventoryItems to updateView
+     * @param itemQuantities to updateView
      */
-    public void printTemporalDataToStandardOutput(List<InventoryItem> inventoryItems) {
+    public void printTemporalDataToStandardOutput(List<ItemQuantity> itemQuantities) {
         System.out.println("<item>: <quantity>, <regular price>, <member price>, <tax status>");
-        inventoryItems
+        itemQuantities
                 .forEach(v -> System.out.println(v.getItem().getName() + ": " + v.getQuantity() + ", $" + v.getItem().getUnitRegularPrice() + ", $" + v.getItem().getUnitMemberPrice() + ", " + v.getItem().getTaxableString()));
     }
 
@@ -54,20 +57,20 @@ public class InventoryView {
      * Load the file inventory
      *
      * @param fileInventory to read
-     * @return List<InventoryItem>
+     * @return List<ItemQuantity>
      * @throws IOException        is happens any error in read line from the file
      * @throws QuickMartException different errors found
      */
-    public List<InventoryItem> readDataFromFile(String fileInventory) throws IOException, QuickMartException {
-        List<InventoryItem> items = new ArrayList<>();
+    public List<ItemQuantity> readDataFromFile(String fileInventory) throws IOException, QuickMartException {
+        List<ItemQuantity> items = new ArrayList<>();
 
         try (BufferedReader fileReaderInventory = new BufferedReader(new FileReader(fileInventory))) {
 
             String line;
             int linePos = 1;
             while ((line = fileReaderInventory.readLine()) != null) {
-                InventoryItem inventoryItem = this.parseDataLine(line, linePos);
-                items.add(inventoryItem);
+                ItemQuantity itemQuantity = this.parseDataLine(line, linePos);
+                items.add(itemQuantity);
                 linePos++;
             }
         } catch (FileNotFoundException e) {
@@ -83,10 +86,10 @@ public class InventoryView {
      *
      * @param line    of the file
      * @param linePos pos os the line in the file
-     * @return InventoryItem
+     * @return ItemQuantity
      * @throws QuickMartException different errors found in the line parsing
      */
-    private InventoryItem parseDataLine(String line, int linePos) throws QuickMartException {
+    private ItemQuantity parseDataLine(String line, int linePos) throws QuickMartException {
         String[] nameAndDetail = line.split(":");
         if (nameAndDetail.length == 1)
             throw new QuickMartException("In the line: " + linePos + " is not defined correctly the item, missing the symbol (:) {Data Line: " + line + "}");
@@ -159,7 +162,7 @@ public class InventoryView {
             throw new QuickMartException("In the line: " + linePos + " the taxable value of the item is wrong. Must be [Tax-Exempt or Taxable] {Data Line: " + line + "}");
         }
 
-        return new InventoryItem(new Item(itemName, regularPrice, memberPrice, taxable), quantity);
+        return new ItemQuantity(new Item(itemName, regularPrice, memberPrice, taxable), quantity);
     }
 
 
