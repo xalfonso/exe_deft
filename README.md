@@ -1,5 +1,12 @@
 <h1> Quick Mart Project </h1>
 <p><em>The Project was made with Maven in IntelliJ 2016.2.4</em></p>
+<h2>Instructions for running the project</h2>
+<ul>
+<li>The project as created as Maven project, you need to have maven installed (run the command: mvn package on project). Please see: https://maven.apache.org/install.html</li>
+<li>The other way is that if you have intalled any IDE intragrate with maven, for example: IntelliJ, Netbeans, Eclipse,..  these will do the work for you </li>
+<li>If for any reason you can not  run the project, please contact to developer </li>
+</ul>
+
 <h2>Explanation of some functionalities: (For seeing all, please run the project)</h2>
 
 <p>
