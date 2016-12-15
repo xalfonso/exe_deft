@@ -10,6 +10,10 @@
   <h3>(0) Option to fill Inventory. You need to write the path of the file and in one second step confirm for passing the data to the inventory</h3>
   <img src="doc/menuFill_Inventory.JPG" width="500"/>  
 </p>
+<p>
+  <h3>(2 or 3) Option to create customer</h3>
+  <img src="doc/menuCreate_Customer.JPG.JPG" width="500"/>  
+</p>
 
 
 
