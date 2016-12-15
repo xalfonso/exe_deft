@@ -1,6 +1,6 @@
 <h1> Quick Mart Project </h1>
 <p><em>The Project was made with Maven in IntelliJ 2016.2.4</em></p>
-<h2>Explanation of some functionalities:</h2>
+<h2>Explanation of some functionalities: (For seeing all, please run the project)</h2>
 
 <p>
   <h3>Main menu of the Project. You need to select an option</h3>
@@ -13,6 +13,14 @@
 <p>
   <h3>(2 or 3) Option to create customer</h3>
   <img src="doc/menuCreate_Customer.JPG" width="500"/>  
+</p>
+<p>
+  <h3>(4) Option to add item to shopping Cart</h3>
+  <img src="doc/menuAdd_ItemShoppingCart.JPG" width="500"/>  
+</p>
+<p>
+  <h3>(8) Option to Checkout and Print receipt</h3>
+  <img src="doc/menuCheckout.JPG" width="500"/>  
 </p>
 
 
