@@ -12,6 +12,10 @@ import java.util.Map;
  */
 public class ShoppingCart {
 
+    /**
+     * Key: Name of Item
+     * Value: Relation Item-Quantity @see {@link ItemQuantity}
+     */
     private Map<String, ItemQuantity> boughtItemMap;
 
     /**
@@ -39,7 +43,7 @@ public class ShoppingCart {
     }
 
     /**
-     * Remove a count of item from shopping cart
+     * Remove a quantity of item from shopping cart
      * @param nameItem name of item
      * @param quantity count of items
      * @return ItemQuantity

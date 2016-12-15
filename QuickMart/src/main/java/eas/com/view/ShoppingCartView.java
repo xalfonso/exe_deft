@@ -4,7 +4,10 @@ import eas.com.exception.QuickMartException;
 import eas.com.model.ItemQuantity;
 import eas.com.model.ShoppingCart;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -26,6 +29,61 @@ public class ShoppingCartView {
      */
     public ShoppingCartView(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+
+    /**
+     * Print the invoice of the transaction
+     *
+     * @param cash paid by the customer
+     * @return path of the file where was generated the invoice
+     * @throws QuickMartException different errors found
+     */
+    public String printInvoice(float cash) throws QuickMartException {
+        String fileName = "transaction_" + this.shoppingCart.getTransaction() + "_" + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("ddMMyyyy")) + ".txt";
+
+        File file = new File("QuickMartInvoices" + File.separator + fileName);
+        if (!file.getParentFile().exists()) {
+            if (!file.getParentFile().mkdir())
+                throw new QuickMartException("Error to create directory QuickMartInvoices (inside the user home directory) for saving the invoices ");
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(this.generateCompleteData(cash, ""));
+        } catch (IOException e) {
+            throw new QuickMartException("Error to print invoice with transaction: " + this.shoppingCart.getTransaction());
+        }
+
+        return file.getAbsolutePath();
+    }
+
+    /**
+     * Print the complete data of Shopping Cart to standard Output
+     *
+     * @param cash   paid by the customer
+     * @param header of the view
+     */
+    public void printCompleteDataToStandardOutput(float cash, String header) {
+        System.out.println(this.generateCompleteData(cash, header));
+    }
+
+    /**
+     * Print the basic data of Shopping Cart to standard Output
+     */
+    public void printBasicDataToStandardOutput() {
+        System.out.println(this.generateBasicData());
+    }
+
+
+    /**
+     * Generate the basic data of the shopping cart
+     */
+    private String generateBasicData() {
+        return this.shoppingCart.getTypeCustomer()
+                + System.lineSeparator()
+                + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))
+                + System.lineSeparator()
+                + "TRANSACTION: " + this.shoppingCart.getTransaction();
     }
 
     /**
@@ -78,43 +136,6 @@ public class ShoppingCartView {
         return stringBuilder.toString();
     }
 
-    public String printInvoice(float cash) throws QuickMartException {
-        String fileName = "transaction_" + this.shoppingCart.getTransaction() + "_" + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("ddMMyyyy")) + ".txt";
-
-        File file = new File("QuickMartInvoices" + File.separator + fileName);
-        if (!file.getParentFile().exists()) {
-            if (!file.getParentFile().mkdir())
-                throw new QuickMartException("Error to create directory QuickMartInvoices (inside the user home directory) for saving the invoices ");
-        }
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(this.generateCompleteData(cash, ""));
-        } catch (IOException e) {
-            throw new QuickMartException("Error to print invoice with transaction: " + this.shoppingCart.getTransaction());
-        }
-
-        return file.getAbsolutePath();
-    }
-
-    public void printCompleteDataToStandardOutput(float cash, String header) {
-        System.out.println(this.generateCompleteData(cash, header));
-    }
-
-    public void printBasicDataToStandardOutput() {
-        System.out.println(this.generateBasicData());
-    }
-
-
-    /**
-     * Generate the basic data of the shopping cart
-     */
-    private String generateBasicData() {
-        return this.shoppingCart.getTypeCustomer()
-                + System.lineSeparator()
-                + this.shoppingCart.getLocalDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"))
-                + System.lineSeparator()
-                + "TRANSACTION: " + this.shoppingCart.getTransaction();
-    }
 
     /**
      * @param itemNameQuantity item name and quantity. eg: Milk,9
@@ -147,6 +168,5 @@ public class ShoppingCartView {
         return new Object[]{itemName, quantity};
 
     }
-
 
 }

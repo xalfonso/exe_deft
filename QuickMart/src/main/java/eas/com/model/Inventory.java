@@ -7,11 +7,15 @@ import java.util.Map;
 
 /**
  * Class for simulating the inventory of item
- * <p>
+ *
  * Created by eduardo on 12/12/2016.
  */
 public class Inventory {
 
+    /**
+     * Key: Name of Item
+     * Value: Relation Item-Quantity @see {@link ItemQuantity}
+     */
     private Map<String, ItemQuantity> inventoryItemMap;
 
 
@@ -20,12 +24,12 @@ public class Inventory {
     }
 
     /**
-     * Remove a count of item from inventory
+     * Remove a quantity of item from inventory
      *
      * @param nameItem name of item
      * @param quantity count of items
      * @return ItemQuantity
-     * @throws QuickMartException if do not exist the item or the count is not enough
+     * @throws QuickMartException if do not exist the item or the quantity is not enough
      */
     public ItemQuantity removeItemQuantity(String nameItem, int quantity) throws QuickMartException {
         ItemQuantity inventoryItem;

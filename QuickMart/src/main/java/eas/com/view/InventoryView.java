@@ -24,9 +24,7 @@ public class InventoryView {
      */
     private Inventory inventory;
 
-    /**
-     * @param inventory data
-     */
+
     public InventoryView(Inventory inventory) {
         this.inventory = inventory;
     }
@@ -58,7 +56,7 @@ public class InventoryView {
      *
      * @param fileInventory to read
      * @return List<ItemQuantity>
-     * @throws IOException        is happens any error in read line from the file
+     * @throws IOException  is happens any error in read line from the file
      * @throws QuickMartException different errors found
      */
     public List<ItemQuantity> readDataFromFile(String fileInventory) throws IOException, QuickMartException {

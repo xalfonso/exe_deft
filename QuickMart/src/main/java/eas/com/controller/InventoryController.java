@@ -36,6 +36,7 @@ public class InventoryController {
 
     /**
      * For temporal data, the user need to confirm
+     * for saving in the inventory
      */
     private List<ItemQuantity> inventoryItemsTemp;
 
@@ -46,23 +47,33 @@ public class InventoryController {
     }
 
     /**
+     * Singleton instance of the inventory controller
      *
-     * @return true if the inventory is empty, false otherwise
+     * @return current inventory controller
      */
-    public boolean isInventoryEmpty(){
-        return this.inventory.isEmpty();
+    public static InventoryController getCurrentInventoryController() {
+        if (currentInventoryController == null) {
+            currentInventoryController = new InventoryController();
+        }
+        return currentInventoryController;
     }
 
-
-    public void viewInventory() {
-        this.inventoryView.printToStandardOutput();
-    }
-
-
+    /**
+     * Load data from File
+     *
+     * @param file path of file
+     * @throws IOException        if happen error reading the file
+     * @throws QuickMartException different errors found
+     */
     public void loadDataFromFile(String file) throws IOException, QuickMartException {
         this.inventoryItemsTemp = this.inventoryView.readDataFromFile(file);
     }
 
+    /**
+     * View the items of the inventory (Temporal Data) in the standard output (console)
+     *
+     * @throws QuickMartException if there is not temporal data loaded
+     */
     public void viewInventoryTemporalData() throws QuickMartException {
         if (this.inventoryItemsTemp == null)
             throw new QuickMartException("There is not temporal data from file inventory leaded");
@@ -70,6 +81,9 @@ public class InventoryController {
         this.inventoryView.printTemporalDataToStandardOutput(this.inventoryItemsTemp);
     }
 
+    /**
+     * Move the items from temporal data to Inventory
+     */
     public void fillInventory() {
         Iterator<ItemQuantity> it = this.inventoryItemsTemp.iterator();
         while (it.hasNext()) {
@@ -79,27 +93,48 @@ public class InventoryController {
 
     }
 
+    /**
+     * Discard items from temporal data
+     */
     public void discardTempDataFromInventory() {
         this.inventoryItemsTemp.clear();
     }
 
-
+    /**
+     * Remove item from inventory
+     *
+     * @param nameItem name of item
+     * @param quantity of the item
+     * @return ItemQuantity
+     * @throws QuickMartException different errors found
+     */
     public ItemQuantity removeFromInventory(String nameItem, int quantity) throws QuickMartException {
         return this.inventory.removeItemQuantity(nameItem, quantity);
     }
 
-    public void addItemToInventory(ItemQuantity inventoryItem){
+    /**
+     * Add items to the inventory
+     *
+     * @param inventoryItem to add
+     */
+    public void addItemToInventory(ItemQuantity inventoryItem) {
         this.inventory.addItemQuantity(inventoryItem);
     }
 
     /**
-     * Singleton instance of the inventory controller
-     * @return current inventory controller
+     * View the items of the inventory in the standard output (console)
      */
-    public static InventoryController getCurrentInventoryController() {
-        if(currentInventoryController == null){
-            currentInventoryController = new InventoryController();
-        }
-        return currentInventoryController;
+    public void viewInventory() {
+        this.inventoryView.printToStandardOutput();
     }
+
+
+    /**
+     * @return true if the inventory is empty, false otherwise
+     */
+    public boolean isInventoryEmpty() {
+        return this.inventory.isEmpty();
+    }
+
+
 }

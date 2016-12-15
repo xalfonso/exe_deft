@@ -5,6 +5,7 @@ import eas.com.exception.QuickMartException;
 import java.text.DecimalFormat;
 
 /**
+ * Class for simulating the relating item-quantity
  * Created by eduardo on 12/14/2016.
  */
 public class ItemQuantity {
@@ -18,17 +19,8 @@ public class ItemQuantity {
         this.quantity = quantity;
     }
 
-
     /**
-     * @return true if the item is sold out, false otherwise
-     */
-    public boolean isItemSoldOut() {
-        return this.quantity == 0;
-    }
-
-
-    /**
-     * Increase the quantity of the item
+     * Increase the the item
      *
      * @param itemQuantity to increase
      */
@@ -38,9 +30,11 @@ public class ItemQuantity {
 
 
     /**
-     * Decrease the quantity of the item
+     * Decrease the item
      *
-     * @param value to increase
+     * @param value to decrease
+     * @return new ItemQuantity with the value decreased
+     * @throws QuickMartException if there is enough items
      */
     public ItemQuantity decrease(int value) throws QuickMartException {
         if (value > this.quantity) {
@@ -49,6 +43,14 @@ public class ItemQuantity {
 
         this.quantity -= value;
         return new ItemQuantity(this.item, value);
+    }
+
+
+    /**
+     * @return true if the item is sold out, false otherwise
+     */
+    public boolean isItemSoldOut() {
+        return this.quantity == 0;
     }
 
     /**
@@ -63,29 +65,24 @@ public class ItemQuantity {
      * @param isMemberCustomer if the customer is member or not
      * @return total tax depending on type of customer
      */
-    public float getTotalTax(boolean isMemberCustomer){
+    public float getTotalTax(boolean isMemberCustomer) {
         return this.getItem().isTaxable() ? this.getTotalPrice(isMemberCustomer) * 0.065f : 0;
     }
 
 
     /**
-     *
      * @param isMemberCustomer if the customer is member or not
      * @return saved money
      */
-    public float getSavedMoney(boolean isMemberCustomer){
+    public float getSavedMoney(boolean isMemberCustomer) {
         return isMemberCustomer ? this.getItem().differenceMemberRegularPrice() * this.quantity : 0;
     }
 
 
-    public Item getItem() {
-        return item;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
+    /**
+     * @param isMemberCustomer
+     * @return String representation for Sopping Cart
+     */
     public String toStringFormatShoppingCart(boolean isMemberCustomer) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String quantityString = String.valueOf(this.quantity);
@@ -99,5 +96,13 @@ public class ItemQuantity {
                 + unitPriceString
                 + String.format("%" + (30 - unitPriceString.length()) + "s", "")
                 + totalPriceString;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
