@@ -12,7 +12,7 @@
 </p>
 <p>
   <h3>(2 or 3) Option to create customer</h3>
-  <img src="doc/menuCreate_Customer.JPG.JPG" width="500"/>  
+  <img src="doc/menuCreate_Customer.JPG" width="500"/>  
 </p>
 
 
