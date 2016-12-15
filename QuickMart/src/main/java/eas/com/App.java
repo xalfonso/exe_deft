@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 
 
 /**
+ * Entry point of the application
  * Created by eduardo on 12/12/2016.
  */
 public class App {
@@ -83,8 +84,8 @@ public class App {
         System.out.println("--------- Option Selected: 0. Inventory. Fill --------------");
         System.out.println();
 
-       System.out.print("Please enter the file name for loading the inventory: ");
-       String fileName = consoleIn.readLine();
+        System.out.print("Please enter the file name for loading the inventory: ");
+        String fileName = consoleIn.readLine();
 
         try {
             InventoryController.getCurrentInventoryController().loadDataFromFile(fileName);

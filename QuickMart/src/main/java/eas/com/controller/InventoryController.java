@@ -137,4 +137,7 @@ public class InventoryController {
     }
 
 
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

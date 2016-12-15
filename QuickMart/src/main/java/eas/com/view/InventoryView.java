@@ -153,9 +153,9 @@ public class InventoryView {
         boolean taxable;
         String taxString = partsDetail[3].trim();
         if (taxString.equalsIgnoreCase("Tax-Exempt")) {
-            taxable = true;
-        } else if (taxString.equalsIgnoreCase("Taxable")) {
             taxable = false;
+        } else if (taxString.equalsIgnoreCase("Taxable")) {
+            taxable = true;
         } else {
             throw new QuickMartException("In the line: " + linePos + " the taxable value of the item is wrong. Must be [Tax-Exempt or Taxable] {Data Line: " + line + "}");
         }

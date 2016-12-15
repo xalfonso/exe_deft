@@ -9,10 +9,20 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven-dependency.version>2.10</maven-dependency.version>
         <main-class>eas.com.App</main-class>
         <maven-jar.version>3.0.2</maven-jar.version>
+        <junit.version>4.12</junit.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
+
+
 
     <build>
         <plugins>
