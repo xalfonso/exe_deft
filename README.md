@@ -1,8 +1,7 @@
 <h1> Quick Mart Project </h1>
 <p><em>The Project was made with Maven in IntelliJ 2016.2.4</em></p>
 <h2>UML Solution</h2>
-<p>
-  <h3>Main menu of the Project. You need to select an option</h3>
+<p>  
   <img src="doc/model.jpg"/>  
 </p>
 <h2>Instructions for running the project</h2>
